@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description"
+    content="TypeMaster — a focused typing practice studio. Build speed and accuracy one session at a time.">
+  <title>TypeMaster — Typing practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#dashboard" aria-label="TypeMaster home">
+        <span class="brand-mark" aria-hidden="true">F<span></span></span>
+        <span class="brand-name">FRANXX</span>
+      </a>
+
+      <p class="nav-label">WORKSPACE</p>
+      <nav class="primary-nav">
+        <button class="nav-item active" type="button" data-view="dashboard" aria-current="page" aria-label="Overview"
+          title="Overview">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3.5" y="3.5" width="7" height="7" rx="1.5" />
+            <rect x="13.5" y="3.5" width="7" height="4" rx="1.5" />
+            <rect x="13.5" y="11.5" width="7" height="9" rx="1.5" />
+            <rect x="3.5" y="13.5" width="7" height="7" rx="1.5" />
+          </svg>
+          <span class="nav-title">Overview</span>
+        </button>
+        <button class="nav-item" type="button" data-view="practice" aria-label="Practice" title="Practice">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7.5h16M4 12h16M4 16.5h10" />
+            <path d="m17 16 2 2 3-4" />
+          </svg>
+          <span class="nav-title">Practice</span>
+        </button>
+        <button class="nav-item" type="button" data-view="race" aria-label="Typing race" title="Typing race"><span
+            aria-hidden="true">🏁</span><span class="nav-title">Race</span></button>
+        <button class="nav-item" type="button" data-view="progress" aria-label="Statistics" title="Statistics">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 19.5V12m5 7.5V5m5 14.5v-10m5 10V8" />
+            <path d="M2.5 20.5h19" />
+          </svg>
+          <span class="nav-title">Statistics</span>
+        </button>
+        <button class="nav-item" type="button" data-view="custom" aria-label="Custom practice"
+          title="Custom practice"><span aria-hidden="true">✎</span><span class="nav-title">Custom
+            practice</span></button>
+        <button class="nav-item" type="button" data-view="achievements" aria-label="Achievements"
+          title="Achievements"><span aria-hidden="true">✳</span><span class="nav-title">Achievements</span></button>
+        <button class="nav-item" type="button" data-view="customization" aria-label="Customize" title="Customize"><span
+            aria-hidden="true">◉</span><span class="nav-title">Customize</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-note">
+          <span class="note-spark" aria-hidden="true">✳</span>
+          <p>Small, steady practice makes a big difference.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar" aria-hidden="true">R</div>
+          <div class="profile-copy"><strong>Raushan</strong><span>Personal practice</span></div>
+          <span class="profile-menu" aria-hidden="true">···</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="app-notice" id="app-notice" role="status" hidden></div>
+      <header class="topbar">
+        <div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-divider">/</span><strong
+            id="page-title">Overview</strong></div>
+        <div class="topbar-right"><span class="today-label" id="today-label"></span><span class="topbar-avatar"
+            aria-label="Your profile">R</span></div>
+      </header>
+
+      <section class="view active" id="dashboard-view" aria-labelledby="welcome-title">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR PRACTICE SPACE</p>
+            <h1 id="welcome-title">A little practice.<br><span>A lot of progress.</span></h1>
+            <p class="welcome-copy">Build a rhythm, find your flow, and let your fingers do the talking.</p>
+            <div class="hero-actions"><button class="button button-primary" type="button" data-go="practice">Start
+                practicing <span aria-hidden="true">↗</span></button><button class="button button-secondary"
+                type="button" data-go="race">Race a bot <span aria-hidden="true">🏁</span></button></div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="hero-key key-tilt-one">A</div>
+            <div class="hero-key key-tilt-two">S</div>
+            <div class="hero-key key-tilt-three">↵</div>
+            <span class="hero-spark spark-one">✳</span><span class="hero-spark spark-two">✳</span>
+            <div class="hero-caption">FIND YOUR<br><strong>FLOW STATE</strong></div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR OVERVIEW</p>
+            <h2>Today at a glance</h2>
+          </div>
+          <span class="live-badge"><span></span> YOUR JOURNEY</span>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon violet">↗</span><span class="stat-caption">ALL TIME</span>
+            </div>
+            <div class="stat-value"><span id="dashboard-wpm">—</span><small>WPM</small></div>
+            <p class="stat-foot">Best typing speed</p>
+            <div class="mini-chart chart-violet" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon mint">◎</span><span class="stat-caption">ALL TIME</span></div>
+            <div class="stat-value"><span id="dashboard-accuracy">—</span><small>%</small></div>
+            <p class="stat-foot">Best accuracy</p>
+            <div class="mini-chart chart-mint" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon orange">⌁</span><span class="stat-caption">KEEP IT UP</span>
+            </div>
+            <div class="stat-value"><span id="dashboard-sessions">0</span><small>sessions</small></div>
+            <p class="stat-foot">Practice sessions completed</p>
+            <div class="session-dots" aria-label="Recent practice days">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+        </div>
+        <div class="extra-stats">
+          <article class="mini-stat"><span>TOTAL WORDS</span><strong id="dashboard-words">0</strong></article>
+          <article class="mini-stat"><span>CHARACTERS TYPED</span><strong id="dashboard-characters">0</strong></article>
+          <article class="mini-stat"><span>PRACTICE TIME</span><strong id="dashboard-time">0 min</strong></article>
+          <article class="mini-stat"><span>AVERAGE WPM</span><strong id="dashboard-average">—</strong></article>
+          <article class="mini-stat"><span>CURRENT STREAK</span><strong id="dashboard-streak">0 days</strong></article>
+        </div>
+        <div class="challenge-banner">
+          <div>
+            <p class="eyebrow">TODAY'S LITTLE CHALLENGE</p>
+            <h2>Show up and type for 60 seconds.</h2>
+            <p class="stat-foot" id="daily-challenge-progress">A small session is a good start.</p>
+          </div>
+          <button class="button button-primary" type="button" id="challenge-button">Take the challenge <span
+              aria-hidden="true">↗</span></button>
+        </div>
+
+        <div class="dashboard-bottom">
+          <section class="recent-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">YOUR LATEST</p>
+                <h2>Recent sessions</h2>
+              </div><button class="text-button" type="button" data-go="progress">View all <span
+                  aria-hidden="true">→</span></button>
+            </div>
+            <div id="dashboard-recent" class="recent-list">
+              <div class="empty-state">Your completed sessions will show up here.</div>
+            </div>
+          </section>
+          <aside class="tip-card">
+            <span class="tip-label"><span>✳</span> QUICK TIP</span>
+            <h3>Accuracy first.<br><span>Speed will follow.</span></h3>
+            <p>Focus on a relaxed, steady rhythm. Consistency is the fastest way to improve.</p>
+            <div class="tip-decoration" aria-hidden="true">⌘</div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="practice-view" aria-labelledby="practice-title" hidden>
+        <div class="practice-header">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR PRACTICE SPACE</p>
+            <h1 id="practice-title">Find your rhythm.</h1>
+            <p class="welcome-copy">Take a breath, settle in, and let the words come to you.</p>
+          </div>
+          <div class="practice-illustration" aria-hidden="true"><span>⌨</span><i>✳</i></div>
+        </div>
+
+        <section class="practice-card" aria-label="Typing practice">
+          <div class="practice-controls">
+            <div class="level-control"><span class="control-label">LEVEL</span>
+              <div class="segmented" role="group" aria-label="Difficulty level">
+                <button type="button" class="level-button selected" data-level="Easy" aria-pressed="true">Easy</button>
+                <button type="button" class="level-button" data-level="Medium" aria-pressed="false">Medium</button>
+                <button type="button" class="level-button" data-level="Advanced" aria-pressed="false">Advanced</button>
+                <button type="button" class="level-button" data-level="Hard" aria-pressed="false">Hard</button>
+              </div>
+            </div>
+            <label class="mode-control"><span class="control-label">EXERCISE</span><select id="practice-mode"
+                aria-label="Practice exercise"></select></label>
+            <div class="timer-control"><span class="control-label">DURATION</span>
+              <div class="duration-options" role="group" aria-label="Test duration">
+                <button type="button" class="duration-button" data-duration="15" aria-pressed="false">15s</button>
+                <button type="button" class="duration-button selected" data-duration="30"
+                  aria-pressed="true">30s</button>
+                <button type="button" class="duration-button" data-duration="60" aria-pressed="false">1m</button>
+                <button type="button" class="duration-button" data-duration="120" aria-pressed="false">2m</button>
+              </div>
+            </div>
+            <div class="timer-extra-controls">
+              <label class="practice-toggle"><input type="checkbox" id="untimed-toggle"> No timer</label>
+              <label class="practice-toggle"><input type="checkbox" id="countdown-toggle"> 3 second countdown</label>
+              <label class="custom-duration">Custom <input type="number" id="custom-minutes" min="0" max="99" value="0"
+                  aria-label="Custom minutes">:<input type="number" id="custom-seconds" min="1" max="59" value="45"
+                  aria-label="Custom seconds"><button type="button" id="apply-custom-duration">Set</button></label>
+            </div>
+            <button class="icon-button restart-button" type="button" id="restart-button" aria-label="Restart test"
+              title="Restart test (Tab)">↻</button>
+          </div>
+
+          <div class="metrics-row" aria-live="polite">
+            <div class="metric"><span class="metric-label">TIME</span><strong id="timer-value">30<span>s</span></strong>
+            </div>
+            <div class="metric"><span class="metric-label">WPM</span><strong id="wpm-value">0</strong></div>
+            <div class="metric"><span class="metric-label">ACCURACY</span><strong
+                id="accuracy-value">100<span>%</span></strong></div>
+            <div class="metric metric-secondary"><span class="metric-label">ERRORS</span><strong
+                id="errors-value">0</strong></div>
+            <div class="metric metric-secondary"><span class="metric-label">CPM</span><strong id="cpm-value">0</strong>
+            </div>
+            <div class="metric metric-secondary"><span class="metric-label">CORRECT</span><strong
+                id="correct-value">0</strong></div>
+            <div class="metric metric-secondary"><span class="metric-label">WRONG</span><strong
+                id="wrong-value">0</strong></div>
+            <div class="metric metric-status"><span class="status-pulse"></span><span id="session-status">READY WHEN YOU
+                ARE</span></div>
+          </div>
+          <div class="practice-actions"><button class="text-button" type="button" id="pause-button"
+              disabled>Pause</button><button class="text-button" type="button" id="focus-button">Focus mode</button>
+          </div>
+          <div class="typing-progress" role="progressbar" aria-label="Passage progress" aria-valuemin="0"
+            aria-valuemax="100" aria-valuenow="0"><span id="typing-progress-fill"></span></div>
+
+          <div class="typing-area" id="typing-area">
+            <div class="typing-text" id="typing-text"></div>
+            <textarea id="typing-input" class="typing-input" aria-label="Type the displayed passage here"
+              autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+            <button type="button" class="typing-start-overlay" id="typing-start">Click here or start typing</button>
+          </div>
+          <div class="typing-footer"><span><kbd>Tab</kbd> + <kbd>Enter</kbd> to restart</span><span
+              id="characters-count">0 / 0 characters</span></div>
+
+          <div class="keyboard-wrap" role="group" aria-label="On-screen QWERTY keyboard">
+            <div class="keyboard" id="keyboard">
+              <div class="keyboard-row">
+                <button class="key" data-key="`">`</button><button class="key" data-key="1">1</button><button
+                  class="key" data-key="2">2</button><button class="key" data-key="3">3</button><button class="key"
+                  data-key="4">4</button><button class="key" data-key="5">5</button><button class="key"
+                  data-key="6">6</button><button class="key" data-key="7">7</button><button class="key"
+                  data-key="8">8</button><button class="key" data-key="9">9</button><button class="key"
+                  data-key="0">0</button><button class="key key-wide" data-key="-">-</button><button
+                  class="key key-wide" data-key="=">=</button><button class="key key-extra" data-key="Backspace"
+                  aria-label="Backspace">⌫</button>
+              </div>
+              <div class="keyboard-row">
+                <button class="key key-extra" data-key="Tab">tab</button><button class="key"
+                  data-key="q">Q</button><button class="key" data-key="w">W</button><button class="key"
+                  data-key="e">E</button><button class="key" data-key="r">R</button><button class="key"
+                  data-key="t">T</button><button class="key" data-key="y">Y</button><button class="key"
+                  data-key="u">U</button><button class="key" data-key="i">I</button><button class="key"
+                  data-key="o">O</button><button class="key" data-key="p">P</button><button class="key"
+                  data-key="[">[</button><button class="key" data-key="]">]</button><button
+                  class="key key-extra key-wide" data-key="\\">\</button>
+              </div>
+              <div class="keyboard-row">
+                <button class="key key-extra key-wide" data-key="CapsLock">caps</button><button class="key"
+                  data-key="a">A</button><button class="key" data-key="s">S</button><button class="key"
+                  data-key="d">D</button><button class="key" data-key="f">F</button><button class="key"
+                  data-key="g">G</button><button class="key" data-key="h">H</button><button class="key"
+                  data-key="j">J</button><button class="key" data-key="k">K</button><button class="key"
+                  data-key="l">L</button><button class="key" data-key=";">;</button><button class="key"
+                  data-key="'">'</button><button class="key key-extra key-wide" data-key="Enter">enter</button>
+              </div>
+              <div class="keyboard-row">
+                <button class="key key-extra key-shift" data-key="Shift">shift</button><button class="key"
+                  data-key="z">Z</button><button class="key" data-key="x">X</button><button class="key"
+                  data-key="c">C</button><button class="key" data-key="v">V</button><button class="key"
+                  data-key="b">B</button><button class="key" data-key="n">N</button><button class="key"
+                  data-key="m">M</button><button class="key" data-key=",">,</button><button class="key"
+                  data-key=".">.</button><button class="key" data-key="/">/</button><button
+                  class="key key-extra key-shift" data-key="Shift">shift</button>
+              </div>
+              <div class="keyboard-row">
+                <button class="key key-extra key-wide" data-key="Control">ctrl</button><button
+                  class="key key-extra key-wide" data-key="Alt">alt</button><button class="key key-space"
+                  data-key=" ">space</button><button class="key key-extra key-wide" data-key="Alt">alt</button><button
+                  class="key key-extra key-wide" data-key="Control">ctrl</button>
+              </div>
+              <div class="keyboard-row arrow-row" aria-label="Arrow keys">
+                <button class="key key-extra" data-key="ArrowLeft" aria-label="Arrow left">←</button><button
+                  class="key key-extra" data-key="ArrowDown" aria-label="Arrow down">↓</button><button
+                  class="key key-extra" data-key="ArrowUp" aria-label="Arrow up">↑</button><button class="key key-extra"
+                  data-key="ArrowRight" aria-label="Arrow right">→</button>
+              </div>
+            </div>
+          </div>
+          <div class="keyboard-hint"><span class="hint-dot"></span> KEYS LIGHT UP AS YOU TYPE</div>
+        </section>
+      </section>
+
+      <section class="view" id="race-view" aria-labelledby="race-title" hidden>
+        <div class="progress-header">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> HEAD-TO-HEAD MODE</p>
+          <h1 id="race-title">Race a typing bot.</h1>
+          <p class="welcome-copy">Two characters, one passage. Type accurately and race Nova to the finish.</p>
+        </div>
+        <section class="history-card race-card" aria-label="Typing race">
+          <div class="race-controls">
+            <label class="field-label" for="race-level">Race difficulty
+              <select id="race-level">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Advanced</option>
+                <option>Hard</option>
+              </select>
+            </label>
+            <div class="race-buttons"><button class="button button-primary" type="button" id="race-start">Start
+                race</button><button class="text-button" type="button" id="race-new">New race</button></div>
+          </div>
+          <div class="race-lanes" aria-label="Race progress">
+            <div class="race-lane">
+              <div class="race-lane-label"><span class="race-avatar player-avatar"
+                  aria-hidden="true">🙂</span><span><strong>You</strong><small id="race-player-caption">Ready at the
+                    start</small></span><b id="race-player-percent">0%</b></div>
+              <div class="race-track"><span class="race-track-progress player-progress"
+                  id="race-player-progress"></span><span class="race-track-runner player-runner" id="race-player-runner"
+                  aria-hidden="true">🏎️</span><span class="race-finish" aria-hidden="true">🏁</span></div>
+            </div>
+            <div class="race-lane">
+              <div class="race-lane-label"><span class="race-avatar bot-avatar"
+                  aria-hidden="true">🤖</span><span><strong>Nova <small class="bot-label">BOT</small></strong><small
+                    id="race-bot-caption">Ready at the start</small></span><b id="race-bot-percent">0%</b></div>
+              <div class="race-track"><span class="race-track-progress bot-progress" id="race-bot-progress"></span><span
+                  class="race-track-runner bot-runner" id="race-bot-runner" aria-hidden="true">🤖</span><span
+                  class="race-finish" aria-hidden="true">🏁</span></div>
+            </div>
+          </div>
+          <div class="race-stats" aria-live="polite">
+            <div><span>TIME</span><strong id="race-time">00:00</strong></div>
+            <div><span>YOUR SPEED</span><strong><span id="race-wpm">0</span> WPM</strong></div>
+            <div><span>ACCURACY</span><strong><span id="race-accuracy">100</span>%</strong></div>
+            <div><span>NOVA'S PACE</span><strong><span id="race-bot-wpm">32</span> WPM</strong></div>
+          </div>
+          <p class="race-status" id="race-status" role="status" aria-live="polite">Choose a level, then start typing
+            when you're ready.</p>
+          <div class="typing-area race-typing-area" id="race-typing-area">
+            <div class="typing-text" id="race-text"></div>
+            <textarea id="race-input" class="typing-input" aria-label="Type the race passage here" autocapitalize="off"
+              autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+            <button type="button" class="typing-start-overlay" id="race-focus">Click here or start typing</button>
+          </div>
+          <div class="typing-footer"><span>Backspace corrects mistakes. Reach the finish before Nova!</span><span
+              id="race-character-count">0 / 0 characters</span></div>
+        </section>
+      </section>
+
+      <section class="view" id="progress-view" aria-labelledby="progress-title" hidden>
+        <div class="progress-header">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR JOURNEY</p>
+          <h1 id="progress-title">Progress, one session at a time.</h1>
+          <p class="welcome-copy">Every practice session is a step forward. Keep showing up.</p>
+        </div>
+        <div class="stats-grid progress-stats">
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon violet">↗</span><span class="stat-caption">PERSONAL BEST</span>
+            </div>
+            <div class="stat-value"><span id="progress-wpm">—</span><small>WPM</small></div>
+            <p class="stat-foot">Fastest session</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon mint">◎</span><span class="stat-caption">PERSONAL BEST</span>
+            </div>
+            <div class="stat-value"><span id="progress-accuracy">—</span><small>%</small></div>
+            <p class="stat-foot">Most accurate session</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon orange">⌁</span><span class="stat-caption">IN YOUR
+                LIBRARY</span></div>
+            <div class="stat-value"><span id="progress-sessions">0</span><small>sessions</small></div>
+            <p class="stat-foot">Completed practice rounds</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon violet">⌁</span><span class="stat-caption">WORDS TYPED</span>
+            </div>
+            <div class="stat-value"><span id="progress-words">0</span></div>
+            <p class="stat-foot">Completed words</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon mint">◷</span><span class="stat-caption">PRACTICE TIME</span>
+            </div>
+            <div class="stat-value"><span id="progress-time">0</span><small>min</small></div>
+            <p class="stat-foot">Time spent practicing</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon orange">✳</span><span class="stat-caption">CURRENT
+                STREAK</span></div>
+            <div class="stat-value"><span id="progress-streak">0</span><small>days</small></div>
+            <p class="stat-foot">Consecutive practice days</p>
+          </article>
+        </div>
+        <div class="xp-card">
+          <div class="xp-copy"><span class="eyebrow">YOUR NEXT MILESTONE</span><strong
+              id="progress-rank">Beginner</strong><span id="xp-label">0 XP · 100 XP to Learner</span></div>
+          <div class="xp-track"><span id="xp-bar"></span></div>
+        </div>
+        <section class="history-card trend-card">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow" id="trend-eyebrow">LAST SEVEN DAYS</p>
+              <h2 id="trend-title">Daily practice</h2>
+            </div>
+            <div class="trend-ranges" role="group" aria-label="Progress chart range"><button type="button"
+                data-range="7" aria-pressed="true">Daily</button><button type="button" data-range="30"
+                aria-pressed="false">Weekly</button><button type="button" data-range="90"
+                aria-pressed="false">Monthly</button></div>
+          </div>
+          <div class="trend-chart" id="trend-chart" aria-label="Practice minutes over time"></div>
+        </section>
+        <section class="history-card">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">THE WORK ADDS UP</p>
+              <h2>Session history</h2>
+            </div>
+          </div>
+          <div id="session-history" class="history-list">
+            <div class="empty-state">Your finished practice sessions will appear here.</div>
+          </div>
+        </section>
+      </section>
+
+      <section class="view" id="custom-view" aria-labelledby="custom-title" hidden>
+        <div class="progress-header">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR WORDS, YOUR PACE</p>
+          <h1 id="custom-title">Practice with your own text.</h1>
+          <p class="welcome-copy">Save passages for class, code, or anything you want to remember.</p>
+        </div>
+        <section class="history-card custom-editor">
+          <label class="field-label" for="custom-title-input">Practice set name</label><input class="text-input"
+            id="custom-title-input" maxlength="48" placeholder="e.g. Java notes">
+          <label class="field-label" for="custom-text-input">Your practice text</label><textarea class="text-area"
+            id="custom-text-input" maxlength="5000"
+            placeholder="Paste or write at least 10 characters to make a practice set."></textarea>
+          <div class="custom-fields">
+            <label class="field-label">Difficulty<select id="custom-level">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Advanced</option>
+                <option>Hard</option>
+              </select></label>
+            <label class="field-label">Time limit<select id="custom-timer">
+                <option value="15">15 seconds</option>
+                <option value="30">30 seconds</option>
+                <option value="60">1 minute</option>
+                <option value="120">2 minutes</option>
+                <option value="300">5 minutes</option>
+                <option value="600">10 minutes</option>
+                <option value="0">No timer</option>
+              </select></label>
+            <label class="field-label">Text size<input type="range" min="13" max="24" value="17"
+                id="custom-font-size"></label>
+            <label class="field-label">Text display<select id="custom-display-style">
+                <option value="wrap">Wrapped paragraph</option>
+                <option value="line">Single scrolling line</option>
+              </select></label>
+          </div>
+          <div class="custom-actions"><button class="button button-primary" type="button" id="save-custom">Save practice
+              set</button><button class="text-button" type="button" id="start-custom">Practice this text
+              →</button><button class="text-button" type="button" id="clear-custom">Clear</button></div>
+          <p class="form-error" id="custom-error" role="alert" hidden></p>
+        </section>
+        <section class="history-card saved-sets">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">YOUR LIBRARY</p>
+              <h2>Saved practice sets</h2>
+            </div>
+          </div>
+          <div id="custom-list" class="custom-list"></div>
+        </section>
+      </section>
+
+      <section class="view" id="achievements-view" aria-labelledby="achievements-title" hidden>
+        <div class="progress-header">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> MILESTONES & MOMENTS</p>
+          <h1 id="achievements-title">Every keystroke counts.</h1>
+          <p class="welcome-copy">Achievements celebrate the progress you make along the way.</p>
+        </div>
+        <div class="achievement-grid" id="achievement-grid"></div>
+      </section>
+
+      <section class="view" id="customization-view" aria-labelledby="customization-title" hidden>
+        <div class="progress-header">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> MAKE IT YOURS</p>
+          <h1 id="customization-title">Your space, your style.</h1>
+          <p class="welcome-copy">Choose a look and adjust how your practice feels.</p>
+        </div>
+        <section class="history-card settings-card">
+          <h2>Theme</h2>
+          <div class="theme-grid" id="theme-grid"></div>
+          <div class="custom-colors"><label>Accent <input type="color" id="accent-color"
+                value="#a391ff"></label><label>Background <input type="color" id="background-color"
+                value="#0b1020"></label><button type="button" class="text-button" id="reset-colors">Reset
+              colors</button></div>
+        </section>
+        <section class="history-card settings-card">
+          <h2>Typing & keyboard</h2>
+          <div class="settings-grid">
+            <label>Typing font <select id="font-choice">
+                <option>DM Mono</option>
+                <option>DM Sans</option>
+                <option>Manrope</option>
+              </select></label>
+            <label>Keyboard style <select id="keyboard-style">
+                <option value="classic">Classic</option>
+                <option value="flat">Flat</option>
+                <option value="glass">Glass</option>
+              </select></label>
+            <label>Target highlight <select id="highlight-style">
+                <option value="glow">Soft glow</option>
+                <option value="outline">Outline</option>
+                <option value="fill">Fill</option>
+              </select></label>
+            <label>Typing text size <input type="range" min="13" max="24" value="17" id="typing-font-size"></label>
+            <label>Keyboard size <input type="range" min="75" max="115" value="100" id="keyboard-size"></label>
+            <label>Key spacing <input type="range" min="2" max="10" value="5" id="keyboard-spacing"></label>
+            <label>Keyboard opacity <input type="range" min="50" max="100" value="100" id="keyboard-opacity"></label>
+            <label>Card roundness <input type="range" min="4" max="22" value="11" id="card-radius"></label>
+          </div>
+          <div class="settings-toggles"><label><input type="checkbox" id="keyboard-visible" checked> Show on-screen
+              keyboard</label><label><input type="checkbox" id="key-labels" checked> Show key
+              labels</label><label><input type="checkbox" id="reduce-motion"> Reduce animations</label><label><input
+                type="checkbox" id="sound-enabled"> Sound effects</label></div>
+        </section>
+        <section class="history-card settings-card">
+          <h2>Background & profile</h2>
+          <div class="image-settings">
+            <label class="upload-control">Upload background image<input type="file" id="background-upload"
+                accept="image/*"></label>
+            <button class="text-button" type="button" id="remove-background">Remove background</button>
+            <label class="upload-control">Profile image<input type="file" id="profile-upload" accept="image/*"></label>
+            <button class="text-button" type="button" id="remove-profile">Remove profile image</button>
+            <label>Image opacity <input type="range" min="5" max="45" value="16" id="background-opacity"></label>
+            <label>Blur <input type="range" min="0" max="12" value="0" id="background-blur"></label>
+            <label>Brightness <input type="range" min="50" max="150" value="100" id="background-brightness"></label>
+            <label>Image position <select id="background-position">
+                <option value="center">Center</option>
+                <option value="top">Top</option>
+                <option value="bottom">Bottom</option>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select></label>
+            <label>Image sizing <select id="background-size">
+                <option value="cover">Cover</option>
+                <option value="contain">Contain</option>
+              </select></label>
+          </div>
+        </section>
+        <section class="history-card settings-card">
+          <h2>Data & preferences</h2>
+          <div class="custom-actions"><button class="text-button" type="button" id="export-data">Export your
+              data</button><label class="upload-control">Import data<input type="file" id="import-data"
+                accept="application/json,.json"></label><button class="text-button danger-text" type="button"
+              id="reset-data">Reset statistics</button><button class="text-button danger-text" type="button"
+              id="reset-settings">Reset settings</button></div>
+          <p class="settings-note">Everything stays in this browser. Uploaded images are resized before being saved
+            locally.</p>
+        </section>
+      </section>
+
+      <section class="result-modal" id="result-modal" role="dialog" aria-modal="true" aria-labelledby="result-title"
+        hidden>
+        <div class="result-card"><button class="icon-button result-close" id="result-close" type="button"
+            aria-label="Close results">×</button>
+          <p class="eyebrow">SESSION COMPLETE</p>
+          <h2 id="result-title">Look at you go.</h2>
+          <p class="result-rating" id="result-rating"></p>
+          <div class="result-grid">
+            <div><span>WPM</span><strong id="result-wpm">0</strong></div>
+            <div><span>Accuracy</span><strong id="result-accuracy">100%</strong></div>
+            <div><span>CPM</span><strong id="result-cpm">0</strong></div>
+            <div><span>Errors</span><strong id="result-errors">0</strong></div>
+            <div><span>Characters typed</span><strong id="result-characters">0</strong></div>
+            <div><span>Correct characters</span><strong id="result-correct">0</strong></div>
+            <div><span>Wrong characters</span><strong id="result-wrong">0</strong></div>
+            <div><span>Completed words</span><strong id="result-words">0</strong></div>
+            <div><span>Time practiced</span><strong id="result-time">0 sec</strong></div>
+          </div>
+          <div class="custom-actions"><button class="button button-primary" type="button" id="result-restart">Try
+              again</button><button class="text-button" type="button" id="result-next">Next challenge →</button></div>
+        </div>
+      </section>
+      <div class="countdown-overlay" id="countdown-overlay" role="status" aria-live="assertive" hidden><span
+          id="countdown-number">3</span><small>GET READY</small></div>
+
+      <footer class="page-footer"><span>Made for the joy of getting better.</span><span>One keystroke at a time <span
+            class="footer-spark">✳</span></span></footer>
+    </main>
+  </div>
+</body>
+
+</html>

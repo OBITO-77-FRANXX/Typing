@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "sessions": [],
+  "settings": {
+    "theme": "Dark",
+    "font": "DM Mono",
+    "typingFontSize": 17,
+    "keyboardSize": 100,
+    "keyboardSpacing": 5,
+    "keyboardOpacity": 100,
+    "cardRadius": 11,
+    "keyboardVisible": true,
+    "keyLabels": true,
+    "reduceMotion": false,
+    "sound": false,
+    "backgroundOpacity": 16,
+    "backgroundBlur": 0,
+    "backgroundBrightness": 100,
+    "backgroundImage": "",
+    "profileImage": "",
+    "backgroundPosition": "center",
+    "backgroundSize": "cover",
+    "keyboardStyle": "classic",
+    "highlightStyle": "glow",
+    "accent": "",
+    "background": "",
+    "level": "Easy",
+    "duration": 30,
+    "countdown": false,
+    "mode": "Passage"
+  },
+  "customSets": []
+}
